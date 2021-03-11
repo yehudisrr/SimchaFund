@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimchosFund.Web", "SimchosFund.Web\SimchosFund.Web.csproj", "{35F23148-EAB0-4D31-89B6-C46E15F2D9C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimchosFund.Data", "SimchosFund.Data\SimchosFund.Data.csproj", "{53758970-5C11-4CEE-B541-C99DEE7FD74F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35F23148-EAB0-4D31-89B6-C46E15F2D9C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35F23148-EAB0-4D31-89B6-C46E15F2D9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35F23148-EAB0-4D31-89B6-C46E15F2D9C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35F23148-EAB0-4D31-89B6-C46E15F2D9C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53758970-5C11-4CEE-B541-C99DEE7FD74F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53758970-5C11-4CEE-B541-C99DEE7FD74F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53758970-5C11-4CEE-B541-C99DEE7FD74F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53758970-5C11-4CEE-B541-C99DEE7FD74F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF71E596-D801-44C8-AF4C-72C345CFDE66}
+	EndGlobalSection
+EndGlobal
