@@ -1,15 +1,15 @@
-﻿<div class="container">
-    <main role="main" class="pb-3" style="margin-top: 60px;">
+﻿@using SimchosFund.Data
+@model ContributionsViewModel
 
+<div class="container">
+    <main role="main" class="pb-3" style="margin-top: 60px;">
         <div class="header">
             <h1>
-                Contributors for the
-                Goldstein Bar Mitzvah simcha
+                Contributors for the @Model.Simcha.Name Simcha
             </h1>
         </div>
         <div class="table-responsive">
-            <form method="POST" action="/simchas/updatecontributions">
-                <input type="hidden" name="simchaId" value="1" />
+            <form method="POST" action="/home/updatecontributions">
                 <table class="table table-bordered table-striped">
                     <tr>
                         <th>Contribute</th>
@@ -18,41 +18,33 @@
                         <th>Always Include</th>
                         <th>Amount</th>
                     </tr>
-                    <input type="hidden" name="contributors[0].ContributorId" value="1" />
-                    <tr>
-                        <td>
-                            <input class="contribute" type="checkbox" name="contributors[0].Include" checked="checked" value="true" />
-                        </td>
-                        <td>Friedman Avrumi</td>
-                        <td>$150.00</td>
-                        <td style="text-align: center;">
-                            <span style="font-size: 25px;" class="oi oi-check"></span>
-                        </td>
-                        <td>
-                            <input type="text" name="contributors[0].amount" class="form-control" value="5.0000" />
-                        </td>
-                    </tr>
-                    <input type="hidden" name="contributors[1].ContributorId" value="2" />
-                    <tr>
-                        <td>
-                            <input class="contribute" type="checkbox" name="contributors[1].Include" checked="checked" value="true" />
-                        </td>
-                        <td>Doe John</td>
-                        <td>$35.00</td>
-                        <td style="text-align: center;">
-                            <span style="font-size: 25px;" class="oi oi-check"></span>
-                        </td>
-                        <td>
-                            <input type="text" name="contributors[1].amount" class="form-control" value="5.0000" />
-                        </td>
-                    </tr>
+
+                    @for (int i = 0; i < Model.Contributors.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="outline-primary" data-offstyle="outline-secondary">                                @*<input class="contribute" type="checkbox" name="contributors[0].Include" checked="checked" value="true" />*@
+                            </td>
+                            <td>@Model.Contributors[i].LastName, @Model.Contributors[i].FirstName </td>
+                            <td>@Model.Contributors[i].Balance</td>
+                            <td>
+                                <span class="oi oi-@(Model.Contributors[i].AlwaysInclude ? "check": "x")"></span>
+                            </td>
+                            <td>
+                                <input type="text" name="contributions[i].Amount" class="form-control" value="5.00" />
+                            </td>
+                        </tr>
+                    }
                 </table>
+                @for (int i = 0; i < Model.Contributors.Count; i++)
+                {
+                    <input type="hidden" name="contributions[i].SimchaId" value="@Model.Simcha.Id" />
+                    <input type="hidden" name="contributions[i].ContributorId" value="@Model.Contributors[i].Id" />
+                }
                 <div style="text-align:center;">
-                    <button class="btn-lg btn-danger">Update</button>
+                    <button class="btn btn-outline-primary">Update</button>
                 </div>
             </form>
         </div>
-
-
     </main>
 </div>

@@ -19,12 +19,37 @@ public class HomeController : Controller
             SFundDb db = new SFundDb(_connectionString);
             SimchasViewModel vm = new SimchasViewModel();
             vm.Simchas = db.GetSimchas();
+            vm.ContributorCount = db.GetContributors().Count;
             return View(vm);
         }
-        public IActionResult New()
+    
+        [HttpPost]
+        public IActionResult New(Simcha simcha)
         {
-            return View();
+            SFundDb db = new SFundDb(_connectionString);
+            db.AddSimcha(simcha);
+            return Redirect("/Home/Index");
         }
 
+        public IActionResult Contributions(int Id)
+        {
+            SFundDb db = new SFundDb(_connectionString);
+            ContributionsViewModel vm = new ContributionsViewModel();
+            vm.Simcha = db.GetSimcha(Id);
+            vm.Contributors = db.GetContributors();
+            return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateContributions(List<Contribution> contributions)
+        {
+            SFundDb db = new SFundDb(_connectionString);
+            db.ClearContributions(contributions[0].SimchaId);
+            foreach (var contribution in contributions)
+            {
+                db.AddContribution(contribution);
+            }
+            return Redirect("/Home/Index");
+        }
     }
 }

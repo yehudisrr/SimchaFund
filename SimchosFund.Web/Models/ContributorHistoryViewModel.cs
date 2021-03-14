@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SimchosFund.Web.Models
 {
-    public class SimchasViewModel
+    public class ContributorHistoryViewModel
     {
-        public List<Simcha> Simchas { get; set; }
-        public int ContributorCount { get; set; }
+        public List<Transaction> Transactions { get; set; }
+        public Contributor Contributor { get; set; }
     }
 }
