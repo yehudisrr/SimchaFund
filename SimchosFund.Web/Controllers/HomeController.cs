@@ -20,6 +20,7 @@ public class HomeController : Controller
             SimchasViewModel vm = new SimchasViewModel();
             vm.Simchas = db.GetSimchas();
             vm.ContributorCount = db.GetContributors().Count;
+            vm.Contributions = db.GetContributions();
             return View(vm);
         }
     
@@ -37,6 +38,7 @@ public class HomeController : Controller
             ContributionsViewModel vm = new ContributionsViewModel();
             vm.Simcha = db.GetSimcha(Id);
             vm.Contributors = db.GetContributors();
+            vm.SimchaContributions = db.GetContributions().Where(c => c.SimchaId == Id).ToList();
             return View(vm);
         }
 
@@ -44,14 +46,17 @@ public class HomeController : Controller
         public IActionResult UpdateContributions(List<Contribution> contributions)
         {
             SFundDb db = new SFundDb(_connectionString);
+
             db.ClearContributions(contributions[0].SimchaId);
             foreach (var contribution in contributions)
-            {
+               
                 {
-                   db.AddContribution(contribution);
-                   contribution.AddContribution = true;
+                if (contribution.AddContributionId == contribution.ContributorId)
+                {
+                    db.AddContribution(contribution);
                 }
-            }
+                }
+  
             return Redirect("/Home/Index");
         }
     }

@@ -114,7 +114,7 @@ namespace SimchosFund.Data
                     CreatedDate = (DateTime)reader["CreatedDate"],
                     CellNumber = (string)reader["CellNumber"],
                     AlwaysInclude = (bool)reader["AlwaysInclude"],
-                    Balance = GetBalance((int)reader["Id"]),
+                    Balance = GetBalance((int)reader["Id"])
                   
                 });
             }
@@ -259,5 +259,29 @@ namespace SimchosFund.Data
             }
             return contributions;
         }
+        public List<Contribution> GetContributions()
+        {
+            var connection = new SqlConnection(_connectionString);
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * From Contributions cs JOIN Simchas s ON cs.SimchaId = s.Id";
+            connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (!reader.Read())
+            {
+                return null;
+            }
+            List<Contribution> contributions = new List<Contribution>();
+            while (reader.Read())
+            {
+                contributions.Add(new Contribution
+                {
+                    ContributorId = (int)reader["ContributorId"],
+                    Amount = (decimal)reader["Amount"],
+                    SimchaId = (int)reader["SimchaId"]
+                });
+            }
+            return contributions;
+        }
+        
     }
 }

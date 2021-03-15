@@ -20,10 +20,16 @@
                     </tr>
 
                     @for (int i = 0; i < Model.Contributors.Count; i++)
-                    {
+                    {                         
                         <tr>
                             <td>
-                                <input type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="outline-primary" data-offstyle="outline-secondary" name="contributions[@i].AddContribution" value="true" @(Model.Contributors[i].AlwaysInclude ? "checked" : "")>  
+                                <input type="checkbox" data-toggle="toggle" class="toggle-btn"
+                                       data-on="Yes" data-off="No" data-onstyle="outline-primary" 
+                                       data-contribution-contributor-id="@Model.Contributors[@i].Id"
+                                       name="contributions[@i].AddContributionId" 
+                                       data-offstyle="outline-secondary"  
+                                       @(Model.Contributors[@i].AlwaysInclude || Model.SimchaContributions.Any(c => c.ContributorId == Model.Contributors[@i].Id) ? "checked" : "")
+                                       />
                             </td>
                             <td>@Model.Contributors[@i].LastName, @Model.Contributors[@i].FirstName </td>
                             <td>@Model.Contributors[@i].Balance</td>
@@ -33,15 +39,18 @@
                             <td>
                                 <input type="text" name="contributions[@i].Amount" class="form-control" value="5.00" />
                                 <input type="hidden" name="contributions[@i].SimchaId" value="@Model.Simcha.Id" />
-                                <input type="hidden" name="contributions[@i].ContributorId" value="@Model.Contributors[i].Id" />
+                                <input type="hidden" name="contributions[@i].ContributorId" value="@Model.Contributors[@i].Id" />
                             </td>
                         </tr>
                     }
                 </table>
-                      <div style="text-align:center;">
+                <div style="text-align:center;">
                     <button class="btn btn-outline-primary">Update</button>
                 </div>
             </form>
         </div>
     </main>
 </div>
+@section Scripts{
+    <script src="/js/contribution.js"></script>
+}

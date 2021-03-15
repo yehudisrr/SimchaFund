@@ -10,5 +10,6 @@ namespace SimchosFund.Web.Models
     {
         public List<Simcha> Simchas { get; set; }
         public int ContributorCount { get; set; }
+        public List<Contribution> Contributions { get; set; }
     }
 }

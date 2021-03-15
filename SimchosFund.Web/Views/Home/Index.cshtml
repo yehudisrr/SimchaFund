@@ -26,9 +26,9 @@
                 </td>
                 <td>@s.Name</td>
                 <td>
-                    something / @Model.ContributorCount
+                   @Model.Contributions.Where(c => c.SimchaId == s.Id).Count() / @Model.ContributorCount
                 </td>
-                <td>total money</td>
+                <td>@Model.Contributions.Where(c => c.SimchaId == s.Id).Sum(c => c.Amount)</td>
                 <td>@s.Date.ToShortDateString()</td>
             </tr>
         }

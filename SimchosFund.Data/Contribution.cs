@@ -9,6 +9,7 @@ namespace SimchosFund.Data
         public int ContributorId { get; set; }
         public int SimchaId { get; set; }
         public decimal Amount { get; set; }
-        public bool AddContribution { get; set; }
+        public int AddContributionId { get; set; }
+
     }
 }

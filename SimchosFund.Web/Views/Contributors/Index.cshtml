@@ -7,12 +7,8 @@
     <div class="col-md-2">
         <button class="btn btn-outline-success" id="add-contributor">New Contributor</button>
     </div>
-    <div class="col-md-6">
-        <input type="text" class="form-control-sm" placeholder="Search" id="search" />
-        <button class="btn btn-outline-info" id="clear">Clear</button>
-    </div>
     <div class="col-md-4">
-        <h3>Total: </h3>
+        <h3>Total: @Model.Contributors.Sum(c => c.Balance)</h3>
     </div>
 </div>
 <div class="table-responsive">
@@ -35,7 +31,7 @@
                 <td>@c.CellNumber</td>
                 <td>@c.Balance</td>
                 <td>
-                    <span class="oi oi-@(c.AlwaysInclude ? "check": "x")"></span>
+                    <span class="oi oi-@(c.AlwaysInclude ? "check": "")"></span>
                 </td>
                 <td>
                     <a href="/contributors/history?id=@c.Id" class="btn btn-outline-primary">Show History</a>

@@ -11,5 +11,7 @@ namespace SimchosFund.Data
         public DateTime Date { get; set; }
         public decimal Amount { get; set; }
         public string SimchaName { get; set; }
+        public int SimchaId { get; set; }
+
     }
 }
