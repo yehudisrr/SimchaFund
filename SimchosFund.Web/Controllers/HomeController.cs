@@ -47,7 +47,10 @@ public class HomeController : Controller
             db.ClearContributions(contributions[0].SimchaId);
             foreach (var contribution in contributions)
             {
-                db.AddContribution(contribution);
+                {
+                   db.AddContribution(contribution);
+                   contribution.AddContribution = true;
+                }
             }
             return Redirect("/Home/Index");
         }

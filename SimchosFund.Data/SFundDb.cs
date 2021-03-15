@@ -111,12 +111,14 @@ namespace SimchosFund.Data
                     Id = (int)reader["Id"],
                     FirstName = (string)reader["FirstName"],
                     LastName = (string)reader["LastName"],
+                    CreatedDate = (DateTime)reader["CreatedDate"],
                     CellNumber = (string)reader["CellNumber"],
                     AlwaysInclude = (bool)reader["AlwaysInclude"],
-                    Balance = GetBalance((int)reader["Id"])
-
+                    Balance = GetBalance((int)reader["Id"]),
+                  
                 });
             }
+            connection.Close();
             return contributors;
         }
 

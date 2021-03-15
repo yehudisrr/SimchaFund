@@ -23,25 +23,22 @@
                     {
                         <tr>
                             <td>
-                                <input type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="outline-primary" data-offstyle="outline-secondary">                                @*<input class="contribute" type="checkbox" name="contributors[0].Include" checked="checked" value="true" />*@
+                                <input type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="outline-primary" data-offstyle="outline-secondary" name="contributions[@i].AddContribution" value="true" @(Model.Contributors[i].AlwaysInclude ? "checked" : "")>  
                             </td>
-                            <td>@Model.Contributors[i].LastName, @Model.Contributors[i].FirstName </td>
-                            <td>@Model.Contributors[i].Balance</td>
+                            <td>@Model.Contributors[@i].LastName, @Model.Contributors[@i].FirstName </td>
+                            <td>@Model.Contributors[@i].Balance</td>
                             <td>
-                                <span class="oi oi-@(Model.Contributors[i].AlwaysInclude ? "check": "x")"></span>
+                                <span class="oi oi-@(Model.Contributors[@i].AlwaysInclude ? "check": "x")"></span>
                             </td>
                             <td>
-                                <input type="text" name="contributions[i].Amount" class="form-control" value="5.00" />
+                                <input type="text" name="contributions[@i].Amount" class="form-control" value="5.00" />
+                                <input type="hidden" name="contributions[@i].SimchaId" value="@Model.Simcha.Id" />
+                                <input type="hidden" name="contributions[@i].ContributorId" value="@Model.Contributors[i].Id" />
                             </td>
                         </tr>
                     }
                 </table>
-                @for (int i = 0; i < Model.Contributors.Count; i++)
-                {
-                    <input type="hidden" name="contributions[i].SimchaId" value="@Model.Simcha.Id" />
-                    <input type="hidden" name="contributions[i].ContributorId" value="@Model.Contributors[i].Id" />
-                }
-                <div style="text-align:center;">
+                      <div style="text-align:center;">
                     <button class="btn btn-outline-primary">Update</button>
                 </div>
             </form>

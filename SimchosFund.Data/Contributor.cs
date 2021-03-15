@@ -14,6 +14,5 @@ namespace SimchosFund.Data
         public bool AlwaysInclude { get; set; }
         public decimal Balance { get; set; }
 
-
-    }
+     }
 }
